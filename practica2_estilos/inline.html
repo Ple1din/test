@@ -6,46 +6,94 @@
   <title>Ado — Adominación Mundial</title>
 </head>
 
-<body style="margin:0; background-color:black; overflow:hidden; font-family:'Kanit', sans-serif; color:white;">
+<body style="margin:0; overflow:hidden; font-family:'Kanit', sans-serif; color:white; background:black;">
 
-  <!-- 🎬 Video de inicio con sonido -->
+  <!-- 🌌 Fondo con transición -->
+  <div id="fondo" style="position:fixed; top:0; left:0; width:100%; height:100%;
+       background:url('src/Ado_bg.jpg') no-repeat center center fixed;
+       background-size:cover; opacity:0; filter:brightness(0.5); transition:opacity 3s ease; z-index:-1;">
+  </div>
+
+  <!-- 🎵 Música -->
+  <audio id="bgMusic"></audio>
+
+  <!-- 🎬 Intro -->
   <video id="introVideo" autoplay style="position:fixed; top:0; left:0; width:100%; height:100%; object-fit:cover; z-index:10;">
     <source src="src/intro.mp4" type="video/mp4">
-    Tu navegador no soporta video HTML5.
   </video>
 
-  <!-- 📄 Información principal -->
+  <!-- 🔘 Botón para saltar intro -->
+  <button id="skipBtn" 
+    style="position:fixed; top:20px; right:20px; z-index:50; background:#00688f; color:white; border:none; padding:10px 18px; border-radius:8px; font-size:1em; cursor:pointer;">
+    Saltar Intro ⏩
+  </button>
+
+  <!-- 🎧 Control de música -->
+  <div id="musicControl" 
+       style="position:fixed; bottom:20px; left:20px; z-index:50; display:flex; align-items:center; gap:10px;
+              background:rgba(0,0,0,0.6); padding:10px 15px; border-radius:10px; border:1px solid #00688f;">
+    <button id="musicBtn" 
+      style="background:#00688f; color:white; border:none; padding:6px 14px; border-radius:6px; cursor:pointer;">
+      ⏸️ Pausar
+    </button>
+    <span id="songTitle" style="font-size:1em; color:#ccc;">🎵 —</span>
+  </div>
+
+  <!-- 📄 Información -->
   <div id="info" style="position:absolute; top:10%; left:5%; width:40%; z-index:5; opacity:0; transition:opacity 2s ease;">
     <h1 style="font-size:3em; color:#00688f; margin-bottom:0;">Ado</h1>
     <h2 style="font-size:1.5em; color:#ccc;">La voz detrás de la nueva ola musical japonesa</h2>
     <p style="font-size:1.1em; line-height:1.6; color:#ddd;">
-      Ado es una cantante japonesa reconocida por su poderosa voz y presencia escénica. 
-      Saltó a la fama con el tema “Usseewa”, y desde entonces se ha convertido en un fenómeno mundial.
-      Su estilo mezcla teatralidad, rebeldía y emociones intensas, conectando con millones de oyentes.
+      Ado (アド) nació el 24 de octubre de 2002 en Tokio, Japón. Es una cantante japonesa reconocida por su poderosa voz, su estilo teatral y su decisión de mantener el anonimato.
     </p>
-
+    <p style="font-size:1.1em; line-height:1.6; color:#ddd;">
+      Su debut oficial fue con el tema <strong>"Usseewa"</strong> (2020), que se volvió viral y la posicionó como ícono de una generación inconforme.
+    </p>
     <p style="font-size:1em;">
       Sitio oficial: 
-      <a href="https://j-entertainment.jp/artist/ado" target="_blank" style="color:#00688f;">ADO</a>
+      <a href="https://j-entertainment.jp/artist/ado" target="_blank" style="color:#00688f;">ADO Oficial</a>
     </p>
   </div>
 
-  <!-- 🖼️ Collage de imágenes -->
-  <div id="collage" style="position:absolute; top:5%; right:5%; display:flex; flex-direction:column; gap:10px; z-index:4; opacity:0; transition:opacity 2s ease;">
-    <img src="src/ado1.jpg" style="width:200px; border-radius:10px;">
-    <img src="src/ado2.jpg" style="width:200px; border-radius:10px;">
-    <img src="src/ado3.jpg" style="width:200px; border-radius:10px;">
+
+  <!-- 🌍 Imagen + Banderas -->
+    <div id="adominacion" style="position:fixed; bottom:5%; right:5%; text-align:center; z-index:4; opacity:0; transition:opacity 2s ease;">
+    
+    <!-- 📝 Mensaje sobre el meme -->
+    <div id="mensajeConciertos" 
+         style="position:absolute; top:-90px; left:50%; transform:translateX(-50%);
+                background:rgba(0,104,143,0.7); color:white; padding:10px 20px;
+                border-radius:8px; font-size:1.2em; font-weight:bold;
+                box-shadow:0 0 10px rgba(0,104,143,0.8); 
+                animation: brillo 2s infinite alternate;">
+      🎤 Haz click para ver conciertos
+    </div>
+
+    <img src="src/adominacion.jpeg" alt="Adominación mundial" style="width:400px; border-radius:15px; position:relative;">
+    
+    <div id="banderas" style="position:absolute; top:0; left:0; width:100%; height:100%; pointer-events:none;">
+      <div class="flag" data-video="src/ado_japan.mp4" style="position:absolute; top:60%; left:15%;">
+        <img src="src/japan.png" style="width:65px; transition:all 0.5s ease; border-radius:5px; cursor:pointer; pointer-events:auto;">
+      </div>
+      <div class="flag" data-video="src/ado_eeuu.mp4" style="position:absolute; top:70%; left:65%;">
+        <img src="src/eeuu.png" style="width:65px; transition:all 0.5s ease; border-radius:5px; cursor:pointer; pointer-events:auto;">
+      </div>
+      <div class="flag" data-video="src/ado_mexico.mp4" style="position:absolute; top:85%; left:80%;">
+        <img src="src/mexico.jpg" style="width:65px; transition:all 0.5s ease; border-radius:5px; cursor:pointer; pointer-events:auto;">
+      </div>
+    </div>
   </div>
 
-  <!-- 🌍 Adominación mundial -->
-  <div id="adominacion" style="position:fixed; bottom:5%; right:5%; text-align:center; z-index:6; opacity:0; transition:opacity 2s ease;">
-    <img src="src/adominacion.jpeg" alt="Adominación mundial" style="width:250px; border-radius:15px;">
-  </div>
+  <!-- 🎞️ Video emergente -->
+  <video id="flagVideo" controls style="position:fixed; bottom:15%; right:15%; width:400px; display:none; border:3px solid #00688f; border-radius:10px; z-index:6;"></video>
 
-  <!-- 🎞️ Videos de conciertos -->
-  <div id="videos" style="position:absolute; bottom:20%; left:55%; width:40%; display:flex; gap:10px; z-index:3; opacity:0; transition:opacity 2s ease;">
-    <video src="src/ado_tokyo.mp4" controls style="width:180px; border:3px solid #00688f; border-radius:10px;"></video>
-    <video src="src/ado_paris.mp4" controls style="width:180px; border:3px solid #00688f; border-radius:10px;"></video>
+  <!-- 📹 Historia -->
+  <div id="historyVideo" style="position:absolute; bottom:5%; left:5%; width:50%; z-index:5; opacity:0; transition:opacity 2s ease;">
+    <h3 style="color:#00688f; font-size:1.6em; margin-bottom:10px;">La historia de Ado</h3>
+    <iframe id="ytVideo" width="100%" height="250" 
+      src="https://www.youtube.com/embed/dbAsrGNJKV8?enablejsapi=1"
+      title="Historia de Ado" frameborder="0" allowfullscreen
+      style="border-radius:10px; box-shadow:0 0 20px rgba(0,104,143,0.5);"></iframe>
   </div>
 
   <!-- 🔗 Navegación -->
@@ -55,38 +103,105 @@
     <a href="externa.html" style="color:#00688f;">Externa</a>
   </div>
 
-  <!-- 🎥 Script de animación -->
+  <!-- 🎥 Script -->
   <script>
     const intro = document.getElementById('introVideo');
+    const skipBtn = document.getElementById('skipBtn');
     const info = document.getElementById('info');
-    const collage = document.getElementById('collage');
     const adominacion = document.getElementById('adominacion');
-    const videos = document.getElementById('videos');
     const nav = document.getElementById('nav');
+    const fondo = document.getElementById('fondo');
+    const bgMusic = document.getElementById('bgMusic');
+    const flagVideo = document.getElementById('flagVideo');
+    const historyVideo = document.getElementById('historyVideo');
+    const musicBtn = document.getElementById('musicBtn');
+    const songTitle = document.getElementById('songTitle');
 
-    // 🎞️ Cuando termina el video de introducción
-    intro.addEventListener('ended', () => {
-      // Animación: reducir el video hacia la esquina inferior derecha
-      intro.style.transition = 'all 2s ease';
-      intro.style.width = '320px';
-      intro.style.height = '180px';
-      intro.style.bottom = '5%';
-      intro.style.right = '5%';
-      intro.style.left = 'auto';
-      intro.style.top = 'auto';
-      intro.style.objectFit = 'cover';
-      intro.style.position = 'fixed';
-      intro.style.zIndex = '6';
+    // 🎶 Playlist
+    const playlist = [
+      { src: "src/musica1.mp3", name: "Show" },
+      { src: "src/musica2.mp3", name: "Mirror" },
+      { src: "src/musica3.mp3", name: "Gira Gira" }
+    ];
+    let currentSong = 0;
 
-      // Hacer aparecer el resto del contenido
-      setTimeout(() => {
-        info.style.opacity = '1';
-        collage.style.opacity = '1';
-        adominacion.style.opacity = '1';
-        videos.style.opacity = '1';
-        nav.style.opacity = '1';
-      }, 800);
+    function playNextSong() {
+      bgMusic.src = playlist[currentSong].src;
+      songTitle.textContent = "🎵 " + playlist[currentSong].name;
+      bgMusic.volume = 0.1;
+      bgMusic.play().catch(()=>{});
+      currentSong = (currentSong + 1) % playlist.length;
+    }
+
+    bgMusic.addEventListener('ended', playNextSong);
+
+    // Botón de pausa/reanudar música
+    musicBtn.addEventListener('click', () => {
+      if (bgMusic.paused) {
+        bgMusic.play();
+        musicBtn.textContent = "⏸️ Pausar";
+      } else {
+        bgMusic.pause();
+        musicBtn.textContent = "▶️ Reanudar";
+      }
     });
+
+    // 🎬 Fin de intro
+    function finishIntro() {
+      skipBtn.style.display = 'none';
+      intro.style.transition = 'opacity 1.5s ease';
+      intro.style.opacity = '0';
+      setTimeout(() => {
+        intro.remove();
+        fondo.style.opacity = '1';
+        info.style.opacity = '1';
+        adominacion.style.opacity = '1';
+        nav.style.opacity = '1';
+        historyVideo.style.opacity = '1';
+        playNextSong();
+      }, 1500);
+    }
+
+    intro.addEventListener('ended', finishIntro);
+    skipBtn.addEventListener('click', finishIntro);
+
+    // 🏁 Efectos banderas
+    document.querySelectorAll('.flag').forEach(flag => {
+      const img = flag.querySelector('img');
+      flag.addEventListener('click', () => {  // 🔄 click en vez de mouseenter para activar correctamente
+        img.style.transform = 'scale(1.4)';
+        img.style.opacity = '0.4';
+        bgMusic.pause();
+        flagVideo.src = flag.getAttribute('data-video');
+        flagVideo.style.display = 'block';
+        flagVideo.play().catch(()=>{});
+      });
+
+      flag.addEventListener('mouseleave', () => {
+        img.style.transform = 'scale(1)';
+        img.style.opacity = '1';
+        flagVideo.pause();
+        flagVideo.style.display = 'none';
+        bgMusic.play().catch(()=>{});
+      });
+    });
+
+    // 🎧 Control YouTube API
+    let ytPlayer;
+    function onYouTubeIframeAPIReady() {
+      ytPlayer = new YT.Player('ytVideo', {
+        events: {
+          'onStateChange': onPlayerStateChange
+        }
+      });
+    }
+    function onPlayerStateChange(event) {
+      if (event.data === 1) bgMusic.pause();
+      else if (event.data === 0 || event.data === 2) bgMusic.play().catch(()=>{});
+    }
+    const tag = document.createElement('script');
+    tag.src = "https://www.youtube.com/iframe_api";
+    document.body.appendChild(tag);
   </script>
 
 </body>

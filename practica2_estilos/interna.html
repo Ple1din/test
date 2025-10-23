@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ado — Adominación Mundial</title>
+
+  <!-- 🎨 Hoja de estilo interna -->
+  <style>
+    body {
+      margin: 0;
+      overflow: hidden;
+      font-family: 'Kanit', sans-serif;
+      color: white;
+      background: black;
+    }
+
+    /* Fondo */
+    #fondo {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: url('src/Ado_bg.jpg') no-repeat center center fixed;
+      background-size: cover;
+      opacity: 0;
+      filter: brightness(0.5);
+      transition: opacity 3s ease;
+      z-index: -1;
+    }
+
+    /* Intro video */
+    #introVideo {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      z-index: 10;
+    }
+
+    /* Botón saltar */
+    #skipBtn {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      z-index: 50;
+      background: #00688f;
+      color: white;
+      border: none;
+      padding: 10px 18px;
+      border-radius: 8px;
+      font-size: 1em;
+      cursor: pointer;
+    }
+
+    /* Control música */
+    #musicControl {
+      position: fixed;
+      bottom: 20px;
+      left: 20px;
+      z-index: 50;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      background: rgba(0, 0, 0, 0.6);
+      padding: 10px 15px;
+      border-radius: 10px;
+      border: 1px solid #00688f;
+    }
+
+    #musicBtn {
+      background: #00688f;
+      color: white;
+      border: none;
+      padding: 6px 14px;
+      border-radius: 6px;
+      cursor: pointer;
+    }
+
+    #songTitle {
+      font-size: 1em;
+      color: #ccc;
+    }
+
+    /* Información */
+    #info {
+      position: absolute;
+      top: 10%;
+      left: 5%;
+      width: 40%;
+      z-index: 5;
+      opacity: 0;
+      transition: opacity 2s ease;
+    }
+
+    #info h1 {
+      font-size: 3em;
+      color: #00688f;
+      margin-bottom: 0;
+    }
+
+    #info h2 {
+      font-size: 1.5em;
+      color: #ccc;
+    }
+
+    #info p {
+      font-size: 1.1em;
+      line-height: 1.6;
+      color: #ddd;
+    }
+
+    #info a {
+      color: #00688f;
+    }
+
+    /* Adominación */
+    #adominacion {
+      position: fixed;
+      bottom: 5%;
+      right: 5%;
+      text-align: center;
+      z-index: 4;
+      opacity: 0;
+      transition: opacity 2s ease;
+    }
+
+    #mensajeConciertos {
+      position: absolute;
+      top: -90px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: rgba(0, 104, 143, 0.7);
+      color: white;
+      padding: 10px 20px;
+      border-radius: 8px;
+      font-size: 1.2em;
+      font-weight: bold;
+      box-shadow: 0 0 10px rgba(0, 104, 143, 0.8);
+      animation: brillo 2s infinite alternate;
+    }
+
+    @keyframes brillo {
+      from { box-shadow: 0 0 5px rgba(0, 104, 143, 0.5); }
+      to { box-shadow: 0 0 20px rgba(0, 104, 143, 1); }
+    }
+
+    #adominacion img {
+      width: 400px;
+      border-radius: 15px;
+      position: relative;
+    }
+
+    /* Banderas */
+    #banderas {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+    }
+
+    .flag {
+      position: absolute;
+      transition: all 0.5s ease;
+    }
+
+    .flag img {
+      width: 65px;
+      border-radius: 5px;
+      transition: all 0.5s ease;
+      cursor: pointer;
+      pointer-events: auto;
+    }
+
+    /* Video emergente */
+    #flagVideo {
+      position: fixed;
+      bottom: 15%;
+      right: 15%;
+      width: 400px;
+      display: none;
+      border: 3px solid #00688f;
+      border-radius: 10px;
+      z-index: 6;
+    }
+
+    /* Historia */
+    #historyVideo {
+      position: absolute;
+      bottom: 5%;
+      left: 5%;
+      width: 50%;
+      z-index: 5;
+      opacity: 0;
+      transition: opacity 2s ease;
+    }
+
+    #historyVideo h3 {
+      color: #00688f;
+      font-size: 1.6em;
+      margin-bottom: 10px;
+    }
+
+    #ytVideo {
+      border-radius: 10px;
+      box-shadow: 0 0 20px rgba(0, 104, 143, 0.5);
+    }
+
+    /* Navegación */
+    #nav {
+      position: fixed;
+      top: 10px;
+      left: 10px;
+      z-index: 20;
+      opacity: 0;
+      transition: opacity 2s ease;
+    }
+
+    #nav a {
+      color: #00688f;
+      margin-right: 10px;
+      text-decoration: none;
+    }
+  </style>
+</head>
+
+<body>
+
+  <div id="fondo"></div>
+  <audio id="bgMusic"></audio>
+
+  <video id="introVideo" autoplay>
+    <source src="src/intro.mp4" type="video/mp4">
+  </video>
+
+  <button id="skipBtn">Saltar Intro ⏩</button>
+
+  <div id="musicControl">
+    <button id="musicBtn">⏸️ Pausar</button>
+    <span id="songTitle">🎵 —</span>
+  </div>
+
+  <div id="info">
+    <h1>Ado</h1>
+    <h2>La voz detrás de la nueva ola musical japonesa</h2>
+    <p>Ado (アド) nació el 24 de octubre de 2002 en Tokio, Japón. Es una cantante japonesa reconocida por su poderosa voz, su estilo teatral y su decisión de mantener el anonimato.</p>
+    <p>Su debut oficial fue con el tema <strong>"Usseewa"</strong> (2020), que se volvió viral y la posicionó como ícono de una generación inconforme.</p>
+    <p>Sitio oficial: 
+      <a href="https://j-entertainment.jp/artist/ado" target="_blank">ADO Oficial</a>
+    </p>
+  </div>
+
+  <div id="adominacion">
+    <div id="mensajeConciertos">🎤 Haz click para ver conciertos</div>
+    <img src="src/adominacion.jpeg" alt="Adominación mundial">
+    <div id="banderas">
+      <div class="flag" data-video="src/ado_japan.mp4" style="top:60%; left:15%;">
+        <img src="src/japan.png">
+      </div>
+      <div class="flag" data-video="src/ado_eeuu.mp4" style="top:70%; left:65%;">
+        <img src="src/eeuu.png">
+      </div>
+      <div class="flag" data-video="src/ado_mexico.mp4" style="top:85%; left:80%;">
+        <img src="src/mexico.jpg">
+      </div>
+    </div>
+  </div>
+
+  <video id="flagVideo" controls></video>
+
+  <div id="historyVideo">
+    <h3>La historia de Ado</h3>
+    <iframe id="ytVideo" width="100%" height="250" 
+      src="https://www.youtube.com/embed/dbAsrGNJKV8?enablejsapi=1"
+      title="Historia de Ado" frameborder="0" allowfullscreen></iframe>
+  </div>
+
+  <div id="nav">
+    <a href="inline.html">Inline</a>
+    <a href="interna.html">Interna</a>
+    <a href="externa.html">Externa</a>
+  </div>
+
+  <script>
+    const intro = document.getElementById('introVideo');
+    const skipBtn = document.getElementById('skipBtn');
+    const info = document.getElementById('info');
+    const adominacion = document.getElementById('adominacion');
+    const nav = document.getElementById('nav');
+    const fondo = document.getElementById('fondo');
+    const bgMusic = document.getElementById('bgMusic');
+    const flagVideo = document.getElementById('flagVideo');
+    const historyVideo = document.getElementById('historyVideo');
+    const musicBtn = document.getElementById('musicBtn');
+    const songTitle = document.getElementById('songTitle');
+
+    // 🎶 Playlist
+    const playlist = [
+      { src: "src/musica1.mp3", name: "Show" },
+      { src: "src/musica2.mp3", name: "Mirror" },
+      { src: "src/musica3.mp3", name: "Gira Gira" }
+    ];
+    let currentSong = 0;
+
+    function playNextSong() {
+      bgMusic.src = playlist[currentSong].src;
+      songTitle.textContent = "🎵 " + playlist[currentSong].name;
+      bgMusic.volume = 0.1;
+      bgMusic.play().catch(()=>{});
+      currentSong = (currentSong + 1) % playlist.length;
+    }
+
+    bgMusic.addEventListener('ended', playNextSong);
+
+    musicBtn.addEventListener('click', () => {
+      if (bgMusic.paused) {
+        bgMusic.play();
+        musicBtn.textContent = "⏸️ Pausar";
+      } else {
+        bgMusic.pause();
+        musicBtn.textContent = "▶️ Reanudar";
+      }
+    });
+
+    function finishIntro() {
+      skipBtn.style.display = 'none';
+      intro.style.transition = 'opacity 1.5s ease';
+      intro.style.opacity = '0';
+      setTimeout(() => {
+        intro.remove();
+        fondo.style.opacity = '1';
+        info.style.opacity = '1';
+        adominacion.style.opacity = '1';
+        nav.style.opacity = '1';
+        historyVideo.style.opacity = '1';
+        playNextSong();
+      }, 1500);
+    }
+
+    intro.addEventListener('ended', finishIntro);
+    skipBtn.addEventListener('click', finishIntro);
+
+    document.querySelectorAll('.flag').forEach(flag => {
+      const img = flag.querySelector('img');
+      flag.addEventListener('click', () => {
+        img.style.transform = 'scale(1.4)';
+        img.style.opacity = '0.4';
+        bgMusic.pause();
+        flagVideo.src = flag.getAttribute('data-video');
+        flagVideo.style.display = 'block';
+        flagVideo.play().catch(()=>{});
+      });
+      flag.addEventListener('mouseleave', () => {
+        img.style.transform = 'scale(1)';
+        img.style.opacity = '1';
+        flagVideo.pause();
+        flagVideo.style.display = 'none';
+        bgMusic.play().catch(()=>{});
+      });
+    });
+
+    let ytPlayer;
+    function onYouTubeIframeAPIReady() {
+      ytPlayer = new YT.Player('ytVideo', {
+        events: { 'onStateChange': onPlayerStateChange }
+      });
+    }
+    function onPlayerStateChange(event) {
+      if (event.data === 1) bgMusic.pause();
+      else if (event.data === 0 || event.data === 2) bgMusic.play().catch(()=>{});
+    }
+    const tag = document.createElement('script');
+    tag.src = "https://www.youtube.com/iframe_api";
+    document.body.appendChild(tag);
+  </script>
+</body>
+</html>
