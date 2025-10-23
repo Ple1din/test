@@ -1,34 +1,114 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Acerca de mí - Yael</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inicio | Prácticas de HTML y CSS</title>
+
+    <!-- Fuente con estilo ADO -->
+    <link href="https://fonts.googleapis.com/css2?family=Exo+2:wght@400;600;700&display=swap" rel="stylesheet">
+
+    <style>
+        body {
+            font-family: 'Exo 2', sans-serif;
+            background: linear-gradient(135deg, #111, #222);
+            color: #f0f0f0;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+        }
+
+        h1 {
+            margin-bottom: 10px;
+            color: #E60023;
+            letter-spacing: 1px;
+        }
+
+        p {
+            color: #ccc;
+            max-width: 600px;
+            text-align: center;
+            font-size: 1rem;
+        }
+
+        .container {
+            margin-top: 30px;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .section {
+            background: #1a1a1a;
+            padding: 20px 40px;
+            border-radius: 12px;
+            box-shadow: 0 0 12px rgba(230, 0, 35, 0.2);
+            transition: 0.3s;
+        }
+
+        .section:hover {
+            box-shadow: 0 0 20px rgba(230, 0, 35, 0.4);
+        }
+
+        h2 {
+            color: #ff5b5b;
+            margin-bottom: 10px;
+        }
+
+        .links {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        a {
+            text-decoration: none;
+            color: white;
+            background: #E60023;
+            padding: 10px 20px;
+            border-radius: 8px;
+            transition: 0.2s;
+            font-weight: 600;
+        }
+
+        a:hover {
+            background: #ff2e4d;
+            transform: scale(1.05);
+        }
+
+        footer {
+            margin-top: 40px;
+            font-size: 0.85rem;
+            color: #777;
+        }
+    </style>
 </head>
 <body>
+    <h1>Bienvenido a mis prácticas</h1>
+    <p>Este sitio reúne mis ejercicios de HTML y CSS.  
+       Me gusta mantener una estética ordenada y moderna, con un toque de diseño funcional.</p>
 
-  <h1>Acerca de mí</h1>
-  <h2>Hola, soy Yael</h2>
+    <div class="container">
+        <div class="section">
+            <h2>Práctica 1: Página personal</h2>
+            <div class="links">
+                <a href="../practica1_pagina/mywebpage.html" target="_blank">Ver "mywebpage.html"</a>
+            </div>
+        </div>
 
-  <img src="144069427.png" alt="Imagen que me representa" width="250">
-
-  <p>
-    Hola, soy Yael, estudiante del Tec de Monterrey y apasionado por la tecnología, la robótica y la creación digital.
-Desde pequeño me ha fascinado entender cómo funcionan las cosas, y hoy canalizo esa curiosidad a través de proyectos de programación, robótica y diseño.
-
-He participado en eventos como el NASA Space Apps Challenge, donde desarrollé un mapa de lunamotos usando Three.js y HTML, y formo parte del equipo VEX Robotics “Vortex”, donde aplico control, sensores y algoritmos para resolver desafíos reales.
-
-Fuera del ámbito técnico, me encanta explorar el diseño, la animación y la música, buscando siempre unir lo técnico con lo creativo.
-Mi objetivo es construir proyectos que inspiren y combinen innovación, estética y propósito.
-  </p>
-
-  <a href="https://github.com/Ple1din" target="_blank">Visita mi GitHub</a><br>
-  <a href="mailto:a01770992@tec.mx">Contáctame por correo</a><br>
-  <a href="https://wa.me/524622243034" target="_blank">Escríbeme por WhatsApp</a>
-
-  <h3>Video que me gusta</h3>
-  <iframe width="560" height="315" src="https://youtu.be/zsBBWBEZkFQ?si=xdigijQmHIwRZqOv"
-  title="Video de YouTube" frameborder="0" allowfullscreen></iframe>
+        <div class="section">
+            <h2>Práctica 2: Estilos en CSS</h2>
+            <div class="links">
+                <a href="/practica2_estilos/inline.html" target="_blank">Inline</a>
+                <a href="/practica2_estilos/interna.html" target="_blank">Interna</a>
+                <a href="/practica2_estilos/externa.html" target="_blank">Externa</a>
+            </div>
+        </div>
+    </div>
 
 </body>
 </html>

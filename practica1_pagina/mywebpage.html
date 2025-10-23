@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Acerca de mí - Yael</title>
+
+  <!-- Fuente estilo ADO / Pleidin -->
+  <link href="https://fonts.googleapis.com/css2?family=Exo+2:wght@400;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    /* Estilo general */
+    body {
+      font-family: 'Exo 2', sans-serif;
+      background: radial-gradient(circle at top, #121212, #0a0a0a);
+      color: #e0e0e0;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+    }
+
+    /* Tarjeta principal */
+    .card {
+      background: #1a1a1a;
+      border-radius: 16px;
+      box-shadow: 0 0 25px rgba(255, 46, 77, 0.2);
+      padding: 40px;
+      max-width: 750px;
+      text-align: center;
+      animation: fadeIn 1s ease;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    h1 {
+      color: #ff2e4d;
+      letter-spacing: 1px;
+      margin-bottom: 5px;
+    }
+
+    h2 {
+      color: #ccc;
+      font-weight: 600;
+      margin-bottom: 20px;
+    }
+
+    img {
+      width: 200px;
+      border-radius: 10px;
+      box-shadow: 0 0 20px rgba(255, 46, 77, 0.25);
+      margin-bottom: 20px;
+      transition: 0.3s;
+    }
+
+    img:hover {
+      transform: scale(1.05);
+      box-shadow: 0 0 25px rgba(255, 46, 77, 0.4);
+    }
+
+    p {
+      text-align: justify;
+      line-height: 1.6;
+      color: #d0d0d0;
+    }
+
+    /* Botones / Enlaces */
+    a {
+      display: inline-block;
+      background: #ff2e4d;
+      color: white;
+      text-decoration: none;
+      padding: 10px 18px;
+      border-radius: 8px;
+      margin: 8px 5px;
+      transition: all 0.25s ease;
+      font-weight: 600;
+    }
+
+    a:hover {
+      background: #ff4966;
+      transform: scale(1.07);
+      box-shadow: 0 0 10px rgba(255, 46, 77, 0.4);
+    }
+
+    h3 {
+      margin-top: 30px;
+      color: #ff2e4d;
+      border-top: 1px solid #333;
+      padding-top: 15px;
+    }
+
+    iframe {
+      border-radius: 12px;
+      margin-top: 10px;
+      width: 100%;
+      max-width: 560px;
+      height: 315px;
+      box-shadow: 0 0 20px rgba(255, 46, 77, 0.25);
+    }
+
+    footer {
+      margin-top: 25px;
+      font-size: 0.9em;
+      color: #777;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="card">
+    <h1>Acerca de mí</h1>
+    <h2>Hola, soy Yael</h2>
+
+    <img src="144069427.png" alt="Imagen que me representa">
+
+    <p>
+      Hola, soy Yael, estudiante del Tec de Monterrey y apasionado por la tecnología, la robótica y la creación digital. 
+      Desde pequeño me ha fascinado entender cómo funcionan las cosas, y hoy canalizo esa curiosidad a través de proyectos de programación,
+      robótica y diseño.
+    <p>
+      He participado en eventos como el NASA Space Apps Challenge, donde desarrollé un mapa de lunamotos usando Three.js y HTML,
+      y formo parte del equipo VEX Robotics “Vortex”, donde aplico control, sensores y algoritmos para resolver desafíos reales.
+    </p>
+
+    <p>
+      Fuera del ámbito técnico, me encanta explorar el diseño, la animación y la música, buscando siempre unir lo técnico con lo creativo.
+      Mi objetivo es construir proyectos que inspiren y combinen innovación, estética y propósito.
+    </p>
+
+    <div class="links">
+      <a href="https://github.com/Ple1din" target="_blank">GitHub</a>
+      <a href="mailto:a01770992@tec.mx">Correo</a>
+      <a href="https://wa.me/524622243034" target="_blank">WhatsApp</a>
+    </div>
+
+    <h3>Video que me gusta</h3>
+
+    <!-- Reemplaza por un video que sí permita embedding -->
+    <iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ" title="Video de YouTube" frameborder="0" allowfullscreen></iframe>
+
+  </div>
+</body>
+</html>

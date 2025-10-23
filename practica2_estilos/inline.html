@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ado — Adominación Mundial</title>
+</head>
+
+<body style="margin:0; background-color:black; overflow:hidden; font-family:'Kanit', sans-serif; color:white;">
+
+  <!-- 🎬 Video de inicio con sonido -->
+  <video id="introVideo" autoplay style="position:fixed; top:0; left:0; width:100%; height:100%; object-fit:cover; z-index:10;">
+    <source src="src/intro.mp4" type="video/mp4">
+    Tu navegador no soporta video HTML5.
+  </video>
+
+  <!-- 📄 Información principal -->
+  <div id="info" style="position:absolute; top:10%; left:5%; width:40%; z-index:5; opacity:0; transition:opacity 2s ease;">
+    <h1 style="font-size:3em; color:#00688f; margin-bottom:0;">Ado</h1>
+    <h2 style="font-size:1.5em; color:#ccc;">La voz detrás de la nueva ola musical japonesa</h2>
+    <p style="font-size:1.1em; line-height:1.6; color:#ddd;">
+      Ado es una cantante japonesa reconocida por su poderosa voz y presencia escénica. 
+      Saltó a la fama con el tema “Usseewa”, y desde entonces se ha convertido en un fenómeno mundial.
+      Su estilo mezcla teatralidad, rebeldía y emociones intensas, conectando con millones de oyentes.
+    </p>
+
+    <p style="font-size:1em;">
+      Sitio oficial: 
+      <a href="https://j-entertainment.jp/artist/ado" target="_blank" style="color:#00688f;">ADO</a>
+    </p>
+  </div>
+
+  <!-- 🖼️ Collage de imágenes -->
+  <div id="collage" style="position:absolute; top:5%; right:5%; display:flex; flex-direction:column; gap:10px; z-index:4; opacity:0; transition:opacity 2s ease;">
+    <img src="src/ado1.jpg" style="width:200px; border-radius:10px;">
+    <img src="src/ado2.jpg" style="width:200px; border-radius:10px;">
+    <img src="src/ado3.jpg" style="width:200px; border-radius:10px;">
+  </div>
+
+  <!-- 🌍 Adominación mundial -->
+  <div id="adominacion" style="position:fixed; bottom:5%; right:5%; text-align:center; z-index:6; opacity:0; transition:opacity 2s ease;">
+    <img src="src/adominacion.jpeg" alt="Adominación mundial" style="width:250px; border-radius:15px;">
+  </div>
+
+  <!-- 🎞️ Videos de conciertos -->
+  <div id="videos" style="position:absolute; bottom:20%; left:55%; width:40%; display:flex; gap:10px; z-index:3; opacity:0; transition:opacity 2s ease;">
+    <video src="src/ado_tokyo.mp4" controls style="width:180px; border:3px solid #00688f; border-radius:10px;"></video>
+    <video src="src/ado_paris.mp4" controls style="width:180px; border:3px solid #00688f; border-radius:10px;"></video>
+  </div>
+
+  <!-- 🔗 Navegación -->
+  <div id="nav" style="position:fixed; top:10px; left:10px; z-index:20; opacity:0; transition:opacity 2s ease;">
+    <a href="inline.html" style="color:#00688f; margin-right:10px;">Inline</a>
+    <a href="interna.html" style="color:#00688f; margin-right:10px;">Interna</a>
+    <a href="externa.html" style="color:#00688f;">Externa</a>
+  </div>
+
+  <!-- 🎥 Script de animación -->
+  <script>
+    const intro = document.getElementById('introVideo');
+    const info = document.getElementById('info');
+    const collage = document.getElementById('collage');
+    const adominacion = document.getElementById('adominacion');
+    const videos = document.getElementById('videos');
+    const nav = document.getElementById('nav');
+
+    // 🎞️ Cuando termina el video de introducción
+    intro.addEventListener('ended', () => {
+      // Animación: reducir el video hacia la esquina inferior derecha
+      intro.style.transition = 'all 2s ease';
+      intro.style.width = '320px';
+      intro.style.height = '180px';
+      intro.style.bottom = '5%';
+      intro.style.right = '5%';
+      intro.style.left = 'auto';
+      intro.style.top = 'auto';
+      intro.style.objectFit = 'cover';
+      intro.style.position = 'fixed';
+      intro.style.zIndex = '6';
+
+      // Hacer aparecer el resto del contenido
+      setTimeout(() => {
+        info.style.opacity = '1';
+        collage.style.opacity = '1';
+        adominacion.style.opacity = '1';
+        videos.style.opacity = '1';
+        nav.style.opacity = '1';
+      }, 800);
+    });
+  </script>
+
+</body>
+</html>
